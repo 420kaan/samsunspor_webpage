@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width , initial-scale=1.0" />
+    <title>History</title>
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="icon" type="ico" href="../stuff/favicon.ico" />
+  </head>
+  <body>
+    <div>
+      <nav class="ustmenu">
+        <img src="../stuff/logosamsun.png" class="logo" alt="samsunsporlogo" />
+        <ul>
+          <li><a href="contact.html">İletişim</a></li>
+          <li><a href="">Tarihçe</a></li>
+          <li><a href="../secondpro/team.html">Takım</a></li>
+          <li><a href="../index.html">Anasayfa</a></li>
+        </ul>
+      </nav>
+      <br />
+      <br />
+      <br />
+    </div>
+    <div>
+      <form type="submit">
+        <div class="loginForm">
+          <h2>Tarihçeyi Görmek için Giriş Yapın</h2>
+          <label for="email">Email: </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="yourname@example.com"
+            name="email"
+            autocomplete="off"
+            required="required"
+          />
+          <br />
+          <label>Şifre: </label>
+          <input
+            id="password"
+            type="password"
+            placeholder="******"
+            name="password"
+            autocomplete="off"
+          />
+          <br />
+          <br />
+          <label>Samsun'u seviyor musunuz?</label>
+          <br />
+          <input
+            type="radio"
+            id="yesno"
+            name="yesno"
+            value="yes"
+            required
+          />evet <input type="radio" id="yesno" name="yesno" value="no" /> hayır
+          <br />
+          <button id="userBtn" onclick="store()">İlerle!</button>
+        </div>
+      </form>
+    </div>
+    <footer>
+      ©
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      Kaan Karaağaç A.Ş.
+    </footer>
+    <script>
+      function store() {
+        var inputEmail = document.getElementById("email").value;
+        var inputPassword = document.getElementById("password").value;
+        localStorage.setItem("email", inputEmail);
+        localStorage.setItem("password", inputPassword);
+      }
+
+      document
+        .getElementById("userBtn")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+
+          var radios = document.getElementsByName("yesno");
+          var checked = false;
+
+          for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked && radios[i].value === "yes") {
+              checked = true;
+              break;
+            }
+          }
+
+          var storedEmail = localStorage.getItem("email");
+          var storedPassword = localStorage.getItem("password");
+
+          if (checked) {
+            if (storedEmail && storedPassword) {
+              window.location.href = "history2.html";
+            } else {
+              alert("İkisini de doldurun lütfen!");
+            }
+          } else {
+            window.location.replace("about:blank", "_blank");
+          }
+        });
+    </script>
+  </body>
+</html>
